@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt-get -y install git python3 doxygen graphviz upx openssl libssl-dev zlib1g-dev autoconf automake pkg-config m4 libtool
           wget https://github.com/7dog123/rec/releases/download/latest/retdec-install.tar.gz
-          tar -xvf retdec-install.tar.gz -C /
+          sudo tar -xvf retdec-install.tar.gz -C /
           PATH=/usr/retdec-install/bin:$PATH
 
       - name: Decompile 
