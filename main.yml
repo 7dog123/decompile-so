@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a multi-line script
+        run: |
+          sudo apt-get -y install git python3 doxygen graphviz upx openssl libssl-dev zlib1g-dev autoconf automake pkg-config m4 libtool
+          wget https://github.com/7dog123/rec/releases/download/latest/retdec.tar.gz
+          tar -xvf retdec.tar.gz -C /
+          PATH=/usr/retdec-install/bin:$PATH
+
+      - name: Decompile 
+        run: |
+          cd aide-hack/busybox/arm/bin
+          retdec-decompiler busybox
